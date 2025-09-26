@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="dashboard">
+    <h2>Bienvenido a tu Dashboard 🚀</h2>
+    <p id="userInfo"></p>
+    <button id="logoutBtn">Cerrar sesión</button>
+  </div>
+
+  <script src="particles.js"></script>
+  <script>
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const userInfo = document.getElementById("userInfo");
+
+    if (!storedUser) {
+      alert("No has iniciado sesión ❌");
+      window.location.href = "login.html";
+    } else {
+      userInfo.textContent = `Usuario: ${storedUser.username} (${storedUser.email})`;
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("user"); // Cierra sesión
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

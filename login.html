@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <form id="loginForm">
+    <h2>Iniciar Sesión</h2>
+
+    <div class="inputbox">
+      <input type="email" id="email" required>
+      <span>Email</span>
+      <i></i>
+    </div>
+
+    <div class="inputbox">
+      <input type="password" id="password" required>
+      <span>Password</span>
+      <i></i>
+    </div>
+
+    <button type="submit">Entrar</button>
+
+    <!-- 🔹 Botón extra para ir a registro -->
+    <p class="register-link">
+      ¿No tienes cuenta? <a href="index.html">Regístrate aquí</a>
+    </p>
+  </form>
+
+  <script src="particles.js"></script>
+  <script>
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        alert("Bienvenido, " + storedUser.username + " 🎉");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Credenciales incorrectas ❌");
+      }
+    });
+  </script>
+</body>
+</html>
